@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://co50sac5ugiyr"]
+
+[ext_resource type="Script" path="res://scripts/footer.gd" id="1_nqpdt"]
+[ext_resource type="Texture2D" uid="uid://csi2jgtcjgw2o" path="res://assets/city.png" id="2_ys72v"]
+[ext_resource type="PackedScene" uid="uid://bdop0dh1lw2v1" path="res://scenes/player2.tscn" id="3_we1ts"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7t763"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u8um"]
+size = Vector2(2325, 3)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_odjrm"]
+b = Vector2(0, 225)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nqpdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.43)
+texture = ExtResource("2_ys72v")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1131, 0)
+scale = Vector2(0.4, 0.43)
+texture = ExtResource("2_ys72v")
+centered = false
+flip_h = true
+
+[node name="Player2" parent="." instance=ExtResource("3_we1ts")]
+position = Vector2(431, 205)
+
+[node name="Camera2D" type="Camera2D" parent="Player2"]
+limit_left = 0
+limit_top = 0
+limit_right = 2262
+limit_bottom = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_7t763")
+
+[node name="floor" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1153.5, 225.5)
+shape = SubResource("RectangleShape2D_5u8um")
+
+[node name="wall_left" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(16, 0)
+shape = SubResource("SegmentShape2D_odjrm")
+
+[node name="wall_right" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2250, 0)
+shape = SubResource("SegmentShape2D_odjrm")
